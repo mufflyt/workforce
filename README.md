@@ -102,6 +102,8 @@ Lastly we confirmed FPMRS status by NPI taxonomy code.
 We were able to find FPMRS board certification from the NPI database.  
 
 * [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES.  I outputed the data from JMP as a txt file where I filtered.  
+![NPPES Search Results Image](https://www.dropbox.com/s/g7axl25cmp5uwne/NPPES%20data%20dissemination%20page.png?raw=1)
+
 [Data file of NPPES numbers](https://www.dropbox.com/s/lxz0azg5rakkz73/only_docs_npidata_pfile_20050523-20200510_no_filter.txt?raw=1) - 
 only_docs_npidata_pfile_20050523-20200510_no_filter.txt from Muffly.  The code is below:
 ```r
