@@ -9,7 +9,7 @@ I was able to find data on Urology board-certified FPMRS at the AUA patient-faci
 
 * [Urology Care Foundation, The Official Foundation of the American Urological Association](https://www.urologyhealth.org/find-a-urologist) - This provides a list of providers and their subspecialty.  The year of certification is listed for their primary board cert in Urology.  
 
-![ABU Image](/images/ABU.png)
+![ABU Image](https://github.com/mufflyt/Workforce/blob/master/images/ABU.png)
 * [ABU List of Board-Certified Urologists with their FPMRS certification](https://www.abu.org/diplomatesearch) - I searched state-by-state to find the data.  In states with over 250 providers we then searched by city and state.  
 * [Wikipedia cities and states](https://en.wikipedia.org/wiki/List_of_largest_cities_of_U.S._states_and_territories_by_population) - The five largest cities in each state were searched from this list.  
 
