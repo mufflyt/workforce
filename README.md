@@ -8,7 +8,7 @@ I am working with Rui and Elena to look at visits with FPMRS physicians.  My rol
 I was able to find data on Urology board-certified FPMRS at the AUA patient-facing site and the "Is Your Doctor Board Certified?" with ABU:
 
 * [Urology Care Foundation, The Official Foundation of the American Urological Association](https://www.urologyhealth.org/find-a-urologist) - This provides a list of providers and their subspecialty.  The year of certification is listed for their primary board cert in Urology.  
-![ABU Image](https://github.com/mufflyt/Workforce/blob/master/images/AUA_find.png)
+![ABU Image](https://www.dropbox.com/s/4m00ycj9ch73yfw/AUA_find.png?raw=1)
 
 * [ABU List of Board-Certified Urologists with their FPMRS certification](https://www.abu.org/diplomatesearch) - I searched state-by-state to find the data.  In states with over 250 providers we then searched by city and state.  
 ![ABU Image](https://github.com/mufflyt/Workforce/blob/master/images/ABU.png)
