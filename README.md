@@ -101,4 +101,37 @@ Lastly we confirmed FPMRS status by NPI taxonomy code.
 ![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
 We were able to find FPMRS board certification from the NPI database.  
 
+* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES.  I outputed the data from JMP as a txt file where I filtered.  
+[Data file of NPPES numbers](https://www.dropbox.com/s/lxz0azg5rakkz73/only_docs_npidata_pfile_20050523-20200510_no_filter.txt?raw=1) - 
+only_docs_npidata_pfile_20050523-20200510_no_filter.txt from Muffly.  The code is below:
+```r
+# Set libPaths.
+.libPaths("/Users/tylermuffly/.exploratory/R/4.0")
 
+# Load required packages.
+library(keras)
+library(humaniformat)
+library(e1071)
+library(janitor)
+library(lubridate)
+library(hms)
+library(tidyr)
+library(stringr)
+library(readr)
+library(forcats)
+library(RcppRoll)
+library(dplyr)
+library(tibble)
+library(bit64)
+library(exploratory)
+
+# Steps to produce the output
+
+  # This is the raw output of the NPI data file from NPPES.  I outputed the data from JMP as a txt file where I filtered.  
+  exploratory::read_delim_file("/Users/tylermuffly/Dropbox/Nomogram/nomogram/data/NPPES/slimmed_down_nppes_to_docs_only/only_docs_npidata_pfile_20050523-20200510_no_filter.txt" , ",", quote = "\"", skip = 0 , col_names = TRUE , na = c('','NA') , locale=readr::locale(encoding = "UTF-8", decimal_mark = ".", tz = "America/Denver", grouping_mark = "," ), trim_ws = TRUE , progress = FALSE) %>%
+  readr::type_convert() %>%
+  exploratory::clean_data_frame() %>%
+  filter(!is.na(NPI)) %>%
+  distinct(NPI, .keep_all = TRUE) %>%
+  mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
+```
