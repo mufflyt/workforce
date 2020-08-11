@@ -96,7 +96,7 @@ exploratory::select_columns(exploratory::clean_data_frame(exploratory::read_exce
 Lastly we confirmed FPMRS status by NPI taxonomy code.  
 
 ## OBGYN FPMRS
-* [NPI List of Board-Certified with FPMRS taxonomy code](https://npiregistry.cms.hhs.gov/) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  
+* [NPI List of Board-Certified with FPMRS taxonomy code](https://npiregistry.cms.hhs.gov/) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  The downside of the NPI database is that taxonomy code/subspecialty code is self-described.  
 ![NPPES Search Image](https://www.dropbox.com/s/j6p3dtb83tw12aa/NPPES_search.png?raw=1)
 ![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
 We were able to find FPMRS board certification from the NPI database.  
@@ -137,3 +137,6 @@ library(exploratory)
   distinct(NPI, .keep_all = TRUE) %>%
   mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
 ```
+* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS.  
+![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
+
