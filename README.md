@@ -93,3 +93,12 @@ exploratory::select_columns(exploratory::clean_data_frame(exploratory::read_exce
   mutate(`Original Certification Year` = recode(`Original Certification Year`, "2004" = "2013", "2011" = "2013", "2012" = "2013", "2018" = "2018", "2007" = "2013", "1997" = "2013", "2002" = "2013", "2005" = "2013", "2006" = "2013", "1994" = "2013", "2010" = "2013", "1998" = "2013", "2008" = "2013", "1987" = "2013", "1999" = "2013", "1984" = "2013", "2009" = "2013", "2001" = "2013", "2003" = "2013", "1990" = "2013", "1993" = "2013", "2013" = "2013", "2000" = "2013", "1995" = "2013", "1992" = "2013", "1988" = "2013", "1982" = "2013", "1996" = "2013", "1991" = "2013"))
 ```
 
+Lastly we confirmed FPMRS status by NPI taxonomy code.  
+
+## OBGYN FPMRS
+* [NPI List of Board-Certified with FPMRS taxonomy code](https://npiregistry.cms.hhs.gov/) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  
+![NPPES Search Image](https://www.dropbox.com/s/j6p3dtb83tw12aa/NPPES_search.png?raw=1)
+![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
+We were able to find FPMRS board certification from the NPI database.  
+
+
