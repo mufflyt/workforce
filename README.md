@@ -11,7 +11,7 @@ I am working with Rui and Elena to look at visits with FPMRS physicians.  My rol
 
 Table 3C: ABMS Board Certified Physicians by Member Board and State:
 ![Table 3C: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/tof4ohpq3527vg4/ABMS%20by%20state.png?raw=1)
-![Table 3C: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image (https://www.dropbox.com/s/1xench4g6z6qtel/ABMS%20by%20state%20urology.png?raw=1)
+![Table 3C: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image] (https://www.dropbox.com/s/1xench4g6z6qtel/ABMS%20by%20state%20urology.png?raw=1)
 
 ## Urology FPMRS
 I was able to find data on Urology board-certified FPMRS at the AUA patient-facing site and the "Is Your Doctor Board Certified?" with ABU:
