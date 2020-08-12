@@ -374,5 +374,66 @@ write.csv(input, output, row.names=FALSE)
 View(input)
 ```
 # AMA Physician Masterfile
-Current count from AMA is 1245 physicians.  
+* [AMA Physician Masterfile](https://www.dropbox.com/s/0sbkw7i49rddwxc/2020%20FPMRS%20Redi-Data%20Quote%20state%20by%20state%20and%20total%20numbers.xls?raw=1) - Current count from AMA is 1,245 physicians.  
 
+STATE	
+  AK	ALASKA	 1 
+	AL	ALABAMA	 20 
+	AR	ARKANSAS	 5 
+	AZ	ARIZONA	 22 
+	CA	CALIFORNIA	 172 
+	CO	COLORADO	 25 
+	CT	CONNECTICUT	 19 
+	DC	DISTRICT OF COLUMBIA	 6 
+	FL	FLORIDA	 84 
+	GA	GEORGIA	 35 
+	HI	HAWAII	 6 
+	IA	IOWA	 10 
+	ID	IDAHO	 3 
+	IL	ILLINOIS	 44 
+	IN	INDIANA	 19 
+	KS	KANSAS	 7 
+	KY	KENTUCKY	 11 
+	LA	LOUISIANA	 15 
+	MA	MASSACHUSETTS	 36 
+	MD	MARYLAND	 33 
+	ME	MAINE	 6 
+	MI	MICHIGAN	 39 
+	MN	MINNESOTA	 20 
+	MO	MISSOURI	 26 
+	MS	MISSISSIPPI	 8 
+	MT	MONTANA	 1 
+	NC	NORTH CAROLINA	 39 
+	NE	NEBRASKA	 9 
+	NH	NEW HAMPSHIRE	 8 
+	NJ	NEW JERSEY	 43 
+	NM	NEW MEXICO	 8 
+	NV	NEVADA	 11 
+	NY	NEW YORK	 85 
+	OH	OHIO	 50 
+	OK	OKLAHOMA	 10 
+	OR	OREGON	 19 
+	PA	PENNSYLVANIA	 45 
+	RI	RHODE ISLAND	 9 
+	SC	SOUTH CAROLINA	 11 
+	SD	SOUTH DAKOTA	 3 
+	TN	TENNESSEE	 30 
+	TX	TEXAS	 85 
+	UT	UTAH	 4 
+	VA	VIRGINIA	 38 
+	VT	VERMONT	 4 
+	WA	WASHINGTON	 33 
+	WI	WISCONSIN	 22 
+	WV	WEST VIRGINIA	 6 
+	DE	DELAWARE	 -   
+	ND	NORTH DAKOTA	 -   
+	WY	WYOMING	 -   
+
+ABMSSUBCERTIFICATION1	5144	Female Pelvic Medicine and Reconstructive Surgery 	 956 
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 284 
+ABMSSUBCERTIFICATION2	5144	Female Pelvic Medicine and Reconstructive Surgery 	 5 
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+ABMSSUBCERTIFICATION3	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+ABMSSUBCERTIFICATION4	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
