@@ -5,7 +5,7 @@ Workforce data for Female Pelvic Medicine and Reconstructive Surgeons
 I am working with Rui and Elena to look at visits with FPMRS physicians.  My role is bringing in the list of physicians who are FPMRS.  
 
 ## ABMS Data
-* [ABMS Certification Data](https://www.dropbox.com/s/iqwqb74q0muitpz/abms-guide-to-medical-specialties-2020.pdf?raw=1). This link is for the 2020 data and the images below are for the 2018. The ABMS provides a publicly-accessible guide regarding certificates issued for all specialties and subspecialties including FPMRS.  They use information provided annually by ABOG.  Table 3B: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018.  Look for **both** OBGYN (top) and urology (bottom) numbers:
+* [ABMS Certification Data](https://www.dropbox.com/s/8bdf0z7eyd2yea7/abms-board-certification-report-2018-2019.pdf?raw=1). This link is for the 2020 data and the images below are for the 2018. The ABMS provides a publicly-accessible guide regarding certificates issued for all specialties and subspecialties including FPMRS.  They use information provided annually by ABOG.  Table 3B: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018.  Look for **both** OBGYN (top) and urology (bottom) numbers:
 ![Table 3B: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/100lktrzhj0d99x/abms.png?raw=1)
 ![Table 3B: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/6ewvkwi0r4hwvft/abms_urology.png?raw=1)
 
