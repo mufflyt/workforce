@@ -136,6 +136,86 @@ library(exploratory)
   distinct(NPI, .keep_all = TRUE) %>%
   mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
 ```
+  
+* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
+![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
+
+* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  
+
+Physician Compare Search Page:
+![National Physician Compare web site search](https://www.dropbox.com/s/s87vrikk6bibgu8/PhysicianCompare_search.png?raw=1)
+
+Physician Compare results showing board certifications:
+![National Physician Compare web site search](https://www.dropbox.com/s/q7b0wusft6l0gw2/Physician_compare_results.png?raw=1)
+
+
+# Accessory Code I used:
+
+* Hand searching remains the best for matching names to NPI numbers.  I tried the `RecordLinkage` package as well.  
+```r
+##https://rpubs.com/ahmademad/RecordLinkage
+# Set libPaths.
+.libPaths("/Users/tylermuffly/.exploratory/R/4.0")
+
+# Load required packages.
+if(!require(pacman))install.packages("pacman")
+pacman::p_load('janitor', 'lubridate', 'hms', 'tidyr', 'devtools', 'purrr', 'readr', 'ggplot2', 'dplyr', 'forcats', 'RcppRoll', 'lubridate', 'hms', 'tidyr', 'stringr', "bit64", "remotes", "tidylog","inspectdf", "DataExplorer", "arsenal", "RCurl", "RSQLite", "DBI", "sqldf", "qdapRegex", "dplyr", "dbplyr", "RPostgreSQL", "data.table")
+set.seed(123456)
+
+# Install github packages
+p_install_gh("cran/doMC")
+library("doMC")
+registerDoMC(cores = detectCores()-1)
+
+library(RecordLinkage)
+library(readr)
+npi <- read_csv("Downloads/filtered_down_to_obgyns_filter_14.csv")
+#Physicians_total_arrange_39 <- read_csv("Downloads/Residents_Only_reorder_cols_59.csv")
+
+Physicians_total_arrange_39 <- read_csv("Downloads/Physicians_total_arrange_39a.csv")
+
+npi <- npi[,c("Provider First Name", "Provider Last Name (Legal Name)", "Provider Business Mailing Address City Name", "Provider Business Mailing Address State Name", "Provider Credential Text")]
+Physicians_total_arrange_39 <- Physicians_total_arrange_39[, c("firstname", "Last_name", "city", "state", "suffix")]
+
+names(Physicians_total_arrange_39) <- names(npi)  
+
+npi[,-1] <- as.data.frame(sapply(npi[,-1], toupper))
+Physicians_total_arrange_39[,-1] <- as.data.frame(sapply(Physicians_total_arrange_39[,-1], toupper))
+
+npi[,-1] <- as.data.frame(sapply(npi[,-1], function(x) gsub("[[:punct:]]", "", x)))
+Physicians_total_arrange_39[,-1] <- as.data.frame(sapply(Physicians_total_arrange_39 [,-1], function(x) gsub("[[:punct:]]", "", x)))
+npi[,-1] <- as.data.frame(sapply(npi[,-1], function(x) gsub(" ", "", x)))
+
+npi[,-1] <- as.data.frame(sapply(npi[,-1], function(x) gsub(" ", "", x)))
+Physicians_total_arrange_39[,-1] <- as.data.frame(sapply(Physicians_total_arrange_39[,-1], function(x) gsub(" ", "", x)))
+
+
+npi$flast <- paste(substring(npi$'Provider First Name',1,1), npi$'Provider Last Name (Legal Name)', sep = '')
+Physicians_total_arrange_39$flast <- paste(substring(Physicians_total_arrange_39$'Provider First Name',1,1), Physicians_total_arrange_39$'Provider Last Name (Legal Name)', sep = '')
+
+a <- compare.linkage(npi, Physicians_total_arrange_39, 
+                     blockfld = c("Provider Credential Text", 
+                                  "Provider Last Name (Legal Name)", 
+                                  "Provider Business Mailing Address State Name"),  #Add gender
+                     strcmp = T, 
+                     exclude=c(1))
+print(head(a$pairs))
+a
+
+a <- epiWeights(a)
+result <- epiClassify(a, 0.7)
+
+b <- emWeights(a, cutoff = 0.8)
+summary(b)
+
+allPairs <- getPairs(b)
+head(allPairs)
+
+finalPairs <- getPairs(b, max.weight = 14, min.weight = 0, single.rows=TRUE, show = "all")
+head(finalPairs)
+
+write.csv(finalPairs, "~/Dropbox/workforce/finalPairs.csv")
+```
 
 I also tried to access the NPI application programming information (API) and it was painfully slow.  The code is listed below:
 ```r
@@ -293,82 +373,4 @@ write.csv(input, output, row.names=FALSE)
 
 # optional. Show output in R window. Only works if run from R Studio
 View(input)
-```
-  
-* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
-![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
-
-* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  
-
-Physician Compare Search Page:
-![National Physician Compare web site search](https://www.dropbox.com/s/s87vrikk6bibgu8/PhysicianCompare_search.png?raw=1)
-
-Physician Compare results showing board certifications:
-![National Physician Compare web site search](https://www.dropbox.com/s/q7b0wusft6l0gw2/Physician_compare_results.png?raw=1)
-
-
-* Hand searching remains the best for matching names to NPI numbers.  I tried the `RecordLinkage` package as well.  
-```r
-##https://rpubs.com/ahmademad/RecordLinkage
-# Set libPaths.
-.libPaths("/Users/tylermuffly/.exploratory/R/4.0")
-
-# Load required packages.
-if(!require(pacman))install.packages("pacman")
-pacman::p_load('janitor', 'lubridate', 'hms', 'tidyr', 'devtools', 'purrr', 'readr', 'ggplot2', 'dplyr', 'forcats', 'RcppRoll', 'lubridate', 'hms', 'tidyr', 'stringr', "bit64", "remotes", "tidylog","inspectdf", "DataExplorer", "arsenal", "RCurl", "RSQLite", "DBI", "sqldf", "qdapRegex", "dplyr", "dbplyr", "RPostgreSQL", "data.table")
-set.seed(123456)
-
-# Install github packages
-p_install_gh("cran/doMC")
-library("doMC")
-registerDoMC(cores = detectCores()-1)
-
-library(RecordLinkage)
-library(readr)
-npi <- read_csv("Downloads/filtered_down_to_obgyns_filter_14.csv")
-#Physicians_total_arrange_39 <- read_csv("Downloads/Residents_Only_reorder_cols_59.csv")
-
-Physicians_total_arrange_39 <- read_csv("Downloads/Physicians_total_arrange_39a.csv")
-
-npi <- npi[,c("Provider First Name", "Provider Last Name (Legal Name)", "Provider Business Mailing Address City Name", "Provider Business Mailing Address State Name", "Provider Credential Text")]
-Physicians_total_arrange_39 <- Physicians_total_arrange_39[, c("firstname", "Last_name", "city", "state", "suffix")]
-
-names(Physicians_total_arrange_39) <- names(npi)  
-
-npi[,-1] <- as.data.frame(sapply(npi[,-1], toupper))
-Physicians_total_arrange_39[,-1] <- as.data.frame(sapply(Physicians_total_arrange_39[,-1], toupper))
-
-npi[,-1] <- as.data.frame(sapply(npi[,-1], function(x) gsub("[[:punct:]]", "", x)))
-Physicians_total_arrange_39[,-1] <- as.data.frame(sapply(Physicians_total_arrange_39 [,-1], function(x) gsub("[[:punct:]]", "", x)))
-npi[,-1] <- as.data.frame(sapply(npi[,-1], function(x) gsub(" ", "", x)))
-
-npi[,-1] <- as.data.frame(sapply(npi[,-1], function(x) gsub(" ", "", x)))
-Physicians_total_arrange_39[,-1] <- as.data.frame(sapply(Physicians_total_arrange_39[,-1], function(x) gsub(" ", "", x)))
-
-
-npi$flast <- paste(substring(npi$'Provider First Name',1,1), npi$'Provider Last Name (Legal Name)', sep = '')
-Physicians_total_arrange_39$flast <- paste(substring(Physicians_total_arrange_39$'Provider First Name',1,1), Physicians_total_arrange_39$'Provider Last Name (Legal Name)', sep = '')
-
-a <- compare.linkage(npi, Physicians_total_arrange_39, 
-                     blockfld = c("Provider Credential Text", 
-                                  "Provider Last Name (Legal Name)", 
-                                  "Provider Business Mailing Address State Name"),  #Add gender
-                     strcmp = T, 
-                     exclude=c(1))
-print(head(a$pairs))
-a
-
-a <- epiWeights(a)
-result <- epiClassify(a, 0.7)
-
-b <- emWeights(a, cutoff = 0.8)
-summary(b)
-
-allPairs <- getPairs(b)
-head(allPairs)
-
-finalPairs <- getPairs(b, max.weight = 14, min.weight = 0, single.rows=TRUE, show = "all")
-head(finalPairs)
-
-write.csv(finalPairs, "~/Dropbox/workforce/finalPairs.csv")
 ```
