@@ -134,19 +134,65 @@ library(exploratory)
   distinct(NPI, .keep_all = TRUE) %>%
   mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
 ```
-
 # Publicly-Available AUGS List of FPMRS Physicians
 * [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
 ![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
 
 # Publicly-Available National Physician Compare List of FPMRS Physicians
-* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  Physician Compare data was last updated on Jul 30, 2020.
+* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  This has the date of medical school graduation as well.  The entire 2017 data is also able to be downloaded at https://data.medicare.gov/data/physician-compare but that is THREE YEARS AGO.  But because the 2017 data is too old we will use an API to download the information.  
 
 Physician Compare Search Page:
 ![National Physician Compare web site search](https://www.dropbox.com/s/s87vrikk6bibgu8/PhysicianCompare_search.png?raw=1)
 
 Physician Compare results showing board certifications:
 ![National Physician Compare web site search](https://www.dropbox.com/s/q7b0wusft6l0gw2/Physician_compare_results.png?raw=1)
+
+Physician Compare results showing board certifications:
+![National Physician Compare API](https://dev.socrata.com/foundry/data.medicare.gov/mj5m-pzi6).  Please see the code below that I used:  
+```r
+## https://dev.socrata.com/foundry/data.medicare.gov/mj5m-pzi6
+
+##  How do we get the most up to date information from Physician Compare instead of 2017 data that is free for download?
+## Install the required package with:
+## install.packages("RSocrata")
+
+library("RSocrata")
+library(tidyverse)
+library(magrittr)
+library(Hmisc)
+library(exploratory)
+
+#Excellent trick to test huge files with read.csv , nrows = 10000
+PCND1 <- 
+  # read.csv("/Volumes/Projects/Pharma_Influence/Data/Physician_Compare/Physician_Compare_National_Downloadable_File.csv") %>%
+  read.socrata(
+    "https://data.medicare.gov/resource/mj5m-pzi6.json",
+    app_token = "**************",
+    email     = "*****************",
+    password  = "*************"
+  ) 
+
+PCND2 <- PCND1 %>%
+  distinct(npi, .keep_all = TRUE) %>%
+  tidyr::drop_na(npi) %>%
+  dplyr::select(npi, lst_nm, frst_nm, mid_nm, gndr, med_sch, grd_yr, pri_spec, sec_spec_1, sec_spec_2, sec_spec_3, sec_spec_4, adr_ln_1, cty, st, zip) %>%
+  dplyr::rename(State = st, City = cty, Zip.Code = zip, First.Name = frst_nm, Last.Name = lst_nm, Middle.Name = mid_nm, Primary.specialty = pri_spec, Secondary.specialty.1 = sec_spec_1, Secondary.specialty.2 = sec_spec_2, Secondary.specialty.3 = sec_spec_3, Secondary.specialty.4 = sec_spec_4, Line.1.Street.Address = adr_ln_1, Gender = gndr, Medical.School.Name = med_sch, Graduation.year = grd_yr) %>%
+  dplyr::filter(State %nin% c("AP","AE", "AS", "FM", "GU", "MH","MP", "PR","PW","UM","VI", "ZZ")) %>%
+  dplyr::filter(Primary.specialty %in% c("GYNECOLOGICAL ONCOLOGY", "OBSTETRICS/GYNECOLOGY") | (Secondary.specialty.1 %in% c("GYNECOLOGICAL ONCOLOGY", "OBSTETRICS/GYNECOLOGY")) | (Secondary.specialty.2 %in% c("GYNECOLOGICAL ONCOLOGY", "OBSTETRICS/GYNECOLOGY")) | (Secondary.specialty.3 %in% c("GYNECOLOGICAL ONCOLOGY", "OBSTETRICS/GYNECOLOGY")) | (Secondary.specialty.4 %in% c("GYNECOLOGICAL ONCOLOGY", "OBSTETRICS/GYNECOLOGY"))) %>%
+  #substr(x = Zip.Code, start =1, stop =5) %>%
+  dplyr::arrange (Last.Name) %>%
+  #tolower(c(Last.Name, First.Name, Middle.Name, Line.1.Street.Address, City, State)) %>%
+  distinct(npi, .keep_all = TRUE) %>%
+  dplyr::mutate_at(vars(Last.Name, First.Name, Middle.Name, Line.1.Street.Address), funs(str_to_title)) %>%
+  dplyr::mutate(Middle.Name = exploratory::impute_na(Middle.Name, type = "value", val = "")) %>%
+  dplyr::mutate_at(vars(Last.Name, First.Name, Middle.Name), funs(str_clean)) %>%
+  tidyr::unite(full.name.1, First.Name, Middle.Name, Last.Name, sep = " ", remove = FALSE, na.rm = FALSE) %>%
+  tidyr::unite(full.name.2, First.Name, Middle.Name, Last.Name, State, sep = " ", remove = FALSE, na.rm = FALSE) %>%
+  tidyr::unite(full.name.3, Line.1.Street.Address, State, Last.Name, sep = " ", remove = FALSE, na.rm = FALSE) %>%
+  dplyr::mutate(Line.1.Street.Address = str_to_title(Line.1.Street.Address)) %>%
+  tidyr::unite(full.name.5, Line.1.Street.Address, State, Last.Name, sep = " ", remove = FALSE, na.rm = FALSE) %>%
+  readr::write_csv("Physician_Compare_National_Downloadable_File2.csv")  
+```
 
 
 # Accessory Code I used:
