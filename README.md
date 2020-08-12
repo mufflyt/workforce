@@ -98,7 +98,7 @@ exploratory::select_columns(exploratory::clean_data_frame(exploratory::read_exce
 ![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
 We were able to find FPMRS board certification from the NPI database.  
 
-* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES.  I outputed the data from JMP as a txt file where I filtered.  The taxonomy codes are set by the National Uniform Claim Committee (https://www.dropbox.com/s/2vmbbk6s6hxxiv9/nucc_taxonomy_191.csv?raw=1).
+* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES and is updated monthly.  I outputed the data from JMP as a txt file where I filtered.  The taxonomy codes are set by the National Uniform Claim Committee (https://www.dropbox.com/s/2vmbbk6s6hxxiv9/nucc_taxonomy_191.csv?raw=1).The NUCC is updated yearly.  
 
 ![NPPES Search Results Image](https://www.dropbox.com/s/g7axl25cmp5uwne/NPPES%20data%20dissemination%20page.png?raw=1)
 
@@ -140,7 +140,7 @@ library(exploratory)
 * [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
 ![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
 
-* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  
+* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  Physician Compare data was last updated on Jul 30, 2020.
 
 Physician Compare Search Page:
 ![National Physician Compare web site search](https://www.dropbox.com/s/s87vrikk6bibgu8/PhysicianCompare_search.png?raw=1)
