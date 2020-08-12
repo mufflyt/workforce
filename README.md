@@ -373,3 +373,6 @@ write.csv(input, output, row.names=FALSE)
 # optional. Show output in R window. Only works if run from R Studio
 View(input)
 ```
+# AMA Physician Masterfile
+Current count from AMA is 1245 physicians.  
+
