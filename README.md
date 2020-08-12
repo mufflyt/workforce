@@ -377,9 +377,9 @@ View(input)
 * [AMA Physician Masterfile](https://www.dropbox.com/s/0sbkw7i49rddwxc/2020%20FPMRS%20Redi-Data%20Quote%20state%20by%20state%20and%20total%20numbers.xls?raw=1) - Current count from AMA is 1,245 physicians.  
 
 STATE	
-  AK	ALASKA	 1 
-	AL	ALABAMA	 20 
-	AR	ARKANSAS	 5 
+  ### AK	ALASKA	 1 
+  ### AL	ALABAMA	 20 
+  ### AR	ARKANSAS	 5 
 	AZ	ARIZONA	 22 
 	CA	CALIFORNIA	 172 
 	CO	COLORADO	 25 
