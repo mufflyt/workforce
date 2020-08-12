@@ -137,6 +137,6 @@ library(exploratory)
   distinct(NPI, .keep_all = TRUE) %>%
   mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
 ```
-* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS.  
+* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
 ![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
 
