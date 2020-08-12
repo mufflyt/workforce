@@ -93,15 +93,13 @@ exploratory::select_columns(exploratory::clean_data_frame(exploratory::read_exce
   mutate(`Original Certification Year` = recode(`Original Certification Year`, "2004" = "2013", "2011" = "2013", "2012" = "2013", "2018" = "2018", "2007" = "2013", "1997" = "2013", "2002" = "2013", "2005" = "2013", "2006" = "2013", "1994" = "2013", "2010" = "2013", "1998" = "2013", "2008" = "2013", "1987" = "2013", "1999" = "2013", "1984" = "2013", "2009" = "2013", "2001" = "2013", "2003" = "2013", "1990" = "2013", "1993" = "2013", "2013" = "2013", "2000" = "2013", "1995" = "2013", "1992" = "2013", "1988" = "2013", "1982" = "2013", "1996" = "2013", "1991" = "2013"))
 ```
 
-* [NPI List of Board-Certified with FPMRS taxonomy code](https://npiregistry.cms.hhs.gov/) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  The downside of the NPI database is that taxonomy code/subspecialty code is self-described.  There were 982 results of physicians with FPMRS.  
+# National Provider Plan and Enumeration System National Provider Index
+* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  The downside of the NPI database is that taxonomy code/subspecialty code is self-described.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  There were 982 results of physicians with FPMRS.  This is the raw output of the NPI data file from NPPES and is updated monthly.  I outputed the data from JMP as a txt file where I filtered.  The taxonomy codes are set by the National Uniform Claim Committee (https://www.dropbox.com/s/2vmbbk6s6hxxiv9/nucc_taxonomy_191.csv?raw=1).The NUCC is updated yearly.  
+
 ![NPPES Search Image](https://www.dropbox.com/s/j6p3dtb83tw12aa/NPPES_search.png?raw=1)
-![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
-We were able to find FPMRS board certification from the NPI database.  
-
-* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES and is updated monthly.  I outputed the data from JMP as a txt file where I filtered.  The taxonomy codes are set by the National Uniform Claim Committee (https://www.dropbox.com/s/2vmbbk6s6hxxiv9/nucc_taxonomy_191.csv?raw=1).The NUCC is updated yearly.  
-
 ![NPPES Search Results Image](https://www.dropbox.com/s/g7axl25cmp5uwne/NPPES%20data%20dissemination%20page.png?raw=1)
-
+![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
+We were able to find FPMRS board certification from the NPI database. 
 [Data file of NPPES numbers](https://www.dropbox.com/s/lxz0azg5rakkz73/only_docs_npidata_pfile_20050523-20200510_no_filter.txt?raw=1) - 
 only_docs_npidata_pfile_20050523-20200510_no_filter.txt from Muffly.  The code is below:
 
@@ -136,10 +134,12 @@ library(exploratory)
   distinct(NPI, .keep_all = TRUE) %>%
   mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
 ```
-  
+
+# AUGS List of FPMRS Physicians
 * [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
 ![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
 
+# National Physician Compare List of FPMRS Physicians
 * [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  Physician Compare data was last updated on Jul 30, 2020.
 
 Physician Compare Search Page:
@@ -150,7 +150,6 @@ Physician Compare results showing board certifications:
 
 
 # Accessory Code I used:
-
 * Hand searching remains the best for matching names to NPI numbers.  I tried the `RecordLinkage` package as well.  
 ```r
 ##https://rpubs.com/ahmademad/RecordLinkage
