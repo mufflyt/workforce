@@ -298,6 +298,14 @@ View(input)
 * [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
 ![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
 
+* [National Physician Compare List of Board-Certified with FPMRS](https://www.medicare.gov/physiciancompare/) - This is a public list of physicians who see Medicare and it lists their board-certification status.  The entire data is also able to be downloaded at https://data.medicare.gov/data/physician-compare.  
+
+Physician Compare Search Page:
+![National Physician Compare web site search](https://www.dropbox.com/s/s87vrikk6bibgu8/PhysicianCompare_search.png?raw=1)
+
+Physician Compare results showing board certifications:
+![National Physician Compare web site search](https://www.dropbox.com/s/q7b0wusft6l0gw2/Physician_compare_results.png?raw=1)
+
 
 * Hand searching remains the best for matching names to NPI numbers.  I tried the `RecordLinkage` package as well.  
 ```r
