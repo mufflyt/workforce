@@ -13,7 +13,7 @@ Table 3C: ABMS Board Certified Physicians by Member Board and State.  Look for *
 ![Table 3C: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/tof4ohpq3527vg4/ABMS%20by%20state.png?raw=1)
 ![Table 3C: ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/1xench4g6z6qtel/ABMS%20by%20state%20urology.png?raw=1)
 
-## Urology FPMRS
+## Urology and OBGYN board-certified FPMRS
 I was able to find data on Urology board-certified FPMRS at the AUA patient-facing site and the "Is Your Doctor Board Certified?" with ABU:
 
 * [Urology Care Foundation, The Official Foundation of the American Urological Association](https://www.urologyhealth.org/find-a-urologist) - This provides a list of providers and their subspecialty.  The year of certification is listed for their primary board cert in Urology.  
@@ -93,15 +93,13 @@ exploratory::select_columns(exploratory::clean_data_frame(exploratory::read_exce
   mutate(`Original Certification Year` = recode(`Original Certification Year`, "2004" = "2013", "2011" = "2013", "2012" = "2013", "2018" = "2018", "2007" = "2013", "1997" = "2013", "2002" = "2013", "2005" = "2013", "2006" = "2013", "1994" = "2013", "2010" = "2013", "1998" = "2013", "2008" = "2013", "1987" = "2013", "1999" = "2013", "1984" = "2013", "2009" = "2013", "2001" = "2013", "2003" = "2013", "1990" = "2013", "1993" = "2013", "2013" = "2013", "2000" = "2013", "1995" = "2013", "1992" = "2013", "1988" = "2013", "1982" = "2013", "1996" = "2013", "1991" = "2013"))
 ```
 
-Lastly we confirmed FPMRS status by NPI taxonomy code.  
-
-## OBGYN FPMRS
 * [NPI List of Board-Certified with FPMRS taxonomy code](https://npiregistry.cms.hhs.gov/) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  The downside of the NPI database is that taxonomy code/subspecialty code is self-described.  
 ![NPPES Search Image](https://www.dropbox.com/s/j6p3dtb83tw12aa/NPPES_search.png?raw=1)
 ![NPPES Search Results Image](https://www.dropbox.com/s/ff6u1464yppm8fh/NPPES_search_results.png?raw=1)
 We were able to find FPMRS board certification from the NPI database.  
 
-* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES.  I outputed the data from JMP as a txt file where I filtered.  
+* [NPPES NPI Registry Downloadable file](https://download.cms.gov/nppes/NPI_Files.html) - I searched for the text string `female pelvic medicine` in the USA for individuals and not offices/hospitals.  This NPI data is available as a downloaded file that is HUGE so it breaks a one core system like R.  This is the raw output of the NPI data file from NPPES.  I outputed the data from JMP as a txt file where I filtered.  The taxonomy codes are set by the National Uniform Claim Committee (https://www.dropbox.com/s/2vmbbk6s6hxxiv9/nucc_taxonomy_191.csv?raw=1).
+
 ![NPPES Search Results Image](https://www.dropbox.com/s/g7axl25cmp5uwne/NPPES%20data%20dissemination%20page.png?raw=1)
 
 [Data file of NPPES numbers](https://www.dropbox.com/s/lxz0azg5rakkz73/only_docs_npidata_pfile_20050523-20200510_no_filter.txt?raw=1) - 
