@@ -13,6 +13,99 @@ Table 3C: ABMS Board Certified Physicians by Member Board and State.  Look for *
 ![Table 3C: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/tof4ohpq3527vg4/ABMS%20by%20state.png?raw=1)
 ![Table 3C: ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/1xench4g6z6qtel/ABMS%20by%20state%20urology.png?raw=1)
 
+## I started by Searching Google for Names in the NPI Database
+
+The code searched for physicians who list Female Pelvic Medicine and Reconstructive Surgery in a web site.  This was the start for a list of possible board-certified OBGYNs and Urologists.  I then cross-referenced that list with the NPI database by first and last name.  This was done by a hand search.  
+```r
+########################################################################################
+# Who practices urogynecology in the United States of America?
+###  https://medium.com/@curiositybits/automating-the-google-search-for-the-web-presence-of-8000-organizations-54775e9f6097
+
+install.packages("rvest")
+install.packages("urltools")
+require("rvest")
+require("urltools")
+library("memoise")
+
+fc <- cache_filesystem(file.path(".cache"))
+GET_m <- memoise(httr::GET, cache = fc)
+gc()
+
+########################################################################################
+###Build list of residents based on NPPES taxonomy codes
+# Set libPaths.
+.libPaths("/Users/tylermuffly/.exploratory/R/4.0")
+
+# Load required packages.
+library(janitor)
+library(lubridate)
+library(hms)
+library(tidyr)
+library(stringr)
+library(readr)
+library(forcats)
+library(RcppRoll)
+library(dplyr)
+library(tibble)
+library(bit64)
+library(exploratory)
+library(tidyverse)
+
+# NPPES scrape using the API.  So this should be really up to date for the NPPES data.  
+NPI_names <- exploratory::read_excel_file( "/Users/tylermuffly/Dropbox (Personal)/workforce/Workforce/NPPES web search hand scrape.xlsx", sheet = "Sheet1", na = c('','NA'), skip=0, col_names=TRUE, trim_ws=TRUE, tzone='America/Denver') %>%
+  readr::type_convert() %>%
+  exploratory::clean_data_frame() %>%
+  filter(!is.na(NPI)) %>%
+  select(-...5, -Address) %>%
+  rename(Certified = ...3) %>%
+  mutate(name = stringr::str_to_title(name)) %>%
+  filter(`Taxonomy code` %nin% c("Nurse Practitioner", "Physician Assistant", "Student in an Organized Health Care Education/Training Program")) %>%
+  rename(Address = ...4) %>%
+  tidyr::separate(Address, into = c("Address_1", "Address_2"), sep = "\\s*\\,\\s*", remove = FALSE, convert = TRUE, extra = "merge") %>%
+  tidyr::separate(Address_2, into = c("Address_2_1", "Address_2_2"), sep = "\\s*\\,\\s*", convert = TRUE) %>%
+  mutate(Address_2_2 = str_remove_all(Address_2_2, "[^a-zA-Z]+")) %>%
+  rename(State = Address_2_2, City = Address_2_1, Street = Address_1) %>%
+  select(-Certified, -Street, -Phone) %>%
+  mutate(first_name = word(name, 1, sep = "\\s+"), last_name = word(name, -1, sep = "\\s+"))
+  #distinct(name, .keep_all = TRUE)
+
+#Applicants dataframe is called "d"
+d <- NPI_names
+colnames(d)
+dim(d)
+
+d$Website1 <- "NA"   #creates to empty row in the d dataframe where the website can go.
+#d$Website2 <- "NA"   #creates to empty row in the d dataframe where the website can go.
+
+for (i in 1:dim(d)[1]) {       #for (i in 1:10) {  #This was for testing.
+  
+  print(paste0("Search for the urogyn name and the google url for:",d$name[i]))
+  Sys.sleep(60.0) 
+  
+  url1 = GET_m(utils::URLencode(paste("https://www.google.com/search?q=female+pelvic+medicine+and+reconstructive+surgery",d$name[i])))  
+ 
+  page1 <- xml2::read_html(url1)    #Reads HTML of the Google results page
+
+  nodes <- rvest::html_nodes(page1, "a")   #Finds the HTML node "a" that is the name of the first link.
+  links <- rvest::html_attr(nodes,"href")  # extract first link of the Google search results
+  
+  link <- links[startsWith(links, "/url?q=")]    # clean the link
+  
+  link <- sub("^/url\\?q\\=(.*?)\\&sa.*$","\\1", link)     # clean the link
+
+ result1 <- as.character(link)
+ d$Website1[i] <- result1[1]
+}
+
+dim(d)
+str(d)
+write.csv(d, "~/Desktop/test.csv")
+write.csv(d, gsub(":", "-" , paste0("~/Desktop/Google_FPMRS_name_and_term_Doximity (", Sys.time(), ").csv")), row.names = FALSE)
+
+View(d)
+```
+I reviewed each hit to determine if the person was a FPMRS and if they listed board-certification as was described in the NPI database.  
+  
 ## Publicly-Available Urology and OBGYN board-certified
 I was able to find data on Urology board-certified FPMRS at the AUA patient-facing site and the "Is Your Doctor Board Certified?" with ABU:
 
