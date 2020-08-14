@@ -13,8 +13,10 @@ Table 3C: ABMS Board Certified Physicians by Member Board and State.  Look for *
 ![Table 3C: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/tof4ohpq3527vg4/ABMS%20by%20state.png?raw=1)
 ![Table 3C: ABMS Member Boards 2009–2018, ABMS Image](https://www.dropbox.com/s/1xench4g6z6qtel/ABMS%20by%20state%20urology.png?raw=1)
 
-## I started by Searching Google for Names in the NPI Database
+## I started by Searching Googing for the term "Female Pelvic Medicine and Reconstructive Surgery"
+This was a top hit and a start of my names to search:  https://www.healthgrades.com/female-pelvic-medicine-and-reconstructive-surgery-directory.  
 
+## I started by Searching Google for Names in the NPI Database
 The code searched for physicians who list Female Pelvic Medicine and Reconstructive Surgery in a web site.  This was the start for a list of possible board-certified OBGYNs and Urologists.  I then cross-referenced that list with the NPI database by first and last name.  This was done by a hand search.  
 ```r
 ########################################################################################
