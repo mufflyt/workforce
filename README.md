@@ -406,65 +406,6 @@ ABMSSUBCERTIFICATION4	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -
 ### The final data set is available for the journal to review.  
 https://www.dropbox.com/s/ds4cogzjst9hhr9/all_a_dataframes_distinct_48.csv?raw=1
 
-	ABMS Data 2018-2019	TM data set 2020				ABMS Data 2018-2019	TM data set 2020	
-State	OBGYN	OBGYN	OBGYN Delta		State	Urology	Urology 	Urology Delta
-AK	2	2	0		AK	0	0	0
-AL	15	15	0		AL	4	6	-2
-AR	5	5	0		AR	0	0	0
-AZ	17	17	0		AZ	8	6	2
-CA	132	132	0		CA	45	26	19
-CO	17	20	-3		CO	4	5	-1
-CT	16	13	3		CT	5	5	0
-DC	2	2	0		DC	2	2	0
-DE	2	1	1		DE	0	0	0
-FL	57	55	2		FL	21	10	11
-GA	33	31	2		GA	8	7	1
-HI	6	6	0		HI	0	0	0
-IA	8	9	-1		IA	1	2	-1
-ID	1	0	1		ID	1	1	0
-IL	43	39	4		IL	8	1	7
-IN	13	14	-1		IN	3	4	-1
-KS	8	6	2		KS	2	1	1
-KY	12	10	2		KY	2	2	0
-LA	10	8	2		LA	6	5	1
-MA	36	33	3		MA	4	4	0
-MD	31	22	9		MD	6	6	0
-ME	7	4	3		ME	3	2	1
-MI	27	25	2		MI	14	10	4
-MN	17	16	1		MN	8	9	-1
-MO	19	23	-4		MO	3	2	1
-MS	6	6	0		MS	2	1	1
-MT	1	1	0		MT	1	0	1
-NC	30	30	0		NC	9	7	2
-ND	0	0	0		ND	0	0	0
-NE	6	3	3		NE	3	2	1
-NH	6	4	2		NH	3	3	0
-NJ	31	33	-2		NJ	8	5	3
-NM	10	7	3		NM	0	0	0
-NV	7	6	1		NV	2	1	1
-NY	64	59	5		NY	28	16	12
-OH	44	35	9		OH	13	7	6
-OK	8	9	-1		OK	4	4	0
-OR	17	15	2		OR	3	5	-2
-PA	50	49	1		PA	7	5	2
-RI	8	7	1		RI	0	0	0
-SC	9	9	0		SC	3	4	-1
-SD	3	3	0		SD	0	0	0
-TN	24	22	2		TN	8	8	0
-TX	65	66	-1		TX	20	10	10
-UT	5	5	0		UT	2	1	1
-VA	35	34	1		VA	8	6	2
-VT	2	2	0		VT	0	0	0
-WA	25	23	2		WA	16	15	1
-WI	19	18	1		WI	6	4	2
-WV	4	6	-2		WV	1	1	0
-WY	0	0	0		WY	0	0	0
-US TOTAL	1021	960	1.078431373		US TOTAL	305	221	1.647058824
-								
-	Excpected	Actual 				Expected	Actual	
-	1021	960				305	221	
-	OBGYN	OBGYN				Urology	Urology	
-
 
 # Accessory Code I used:
 * Hand searching remains the best for matching names to NPI numbers.  I tried the `RecordLinkage` package as well.  
