@@ -108,6 +108,52 @@ View(d)
 I reviewed each hit to determine if the person was a FPMRS and if they listed board-certification as was described in the NPI database.  
   
 ## Publicly-Available Urology and OBGYN board-certified
+Data on the web can be scraped based on the "terms of service" and the robots.txt file on the site.  All sites are able to be copied and pasted.  None of the sites have a terms of service therefore we examined the robots.txt files.  ABOG has a vague terms of service but an unrestrictive robots.txt file.  
+```r
+#Provides functions to download and parse ‘robots.txt’ files. Ultimately the package makes it easy to check if bots (spiders, crawler, scrapers, …) are allowed to access specific resources on a domain.  (e.g. https://wikipedia.org/robots.txt, https://google.com/robots.txt) 
+
+# paths_allowed("http://google.com/")
+# ## [1] TRUE
+# paths_allowed("http://google.com/search")
+# ## [1] FALSE
+
+install.packages("robotstxt")
+library(robotstxt)
+options(robotstxt_warn = FALSE)
+paths_allowed(
+  paths  = c("/api/rest_v1/?doc", "/w/"),
+  domain = "https://www.urologyhealth.org",
+  bot    = "*"
+)
+#[1] TRUE TRUE
+
+paths_allowed(
+  paths  = c("/api/rest_v1/?doc", "/w/"),
+  domain = "https://www.abu.org",
+  bot    = "*"
+)
+#[1] TRUE TRUE
+
+paths_allowed(
+  domain = "https://en.wikipedia.org/",
+  bot    = "*"
+)
+#[1] TRUE
+
+paths_allowed(
+  paths  = c("/api/rest_v1/?doc", "/w/"),
+  domain = "https://www.voicesforpfd.org/",
+  bot    = "*"
+)
+#[1] TRUE TRUE
+
+paths_allowed(
+  paths  = c("/api/rest_v1/?doc", "/w/"),
+  domain = "https://www.medicare.gov/physiciancompare/",
+  bot    = "*"
+)
+#[1] TRUE TRUE
+```
 I was able to find data on Urology board-certified FPMRS at the AUA patient-facing site and the "Is Your Doctor Board Certified?" with ABU:
 
 * [Urology Care Foundation, The Official Foundation of the American Urological Association](https://www.urologyhealth.org/find-a-urologist) - This provides a list of providers and their subspecialty.  The year of certification is listed for their primary board cert in Urology.  
