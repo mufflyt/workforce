@@ -2,6 +2,8 @@
 Workforce data for Female Pelvic Medicine and Reconstructive Surgeons.  Please see a walk through video of how the data set was created.  
 https://youtu.be/07RiuBlL7UA
 
+## Where did the data come from?
+![Flow chart](https://www.dropbox.com/s/paajyi6rkihev3x/flowsheet.jpeg?raw=1)
 
 ## Publicly-Available ABMS
 * [ABMS Certification Data](https://www.dropbox.com/s/8bdf0z7eyd2yea7/abms-board-certification-report-2018-2019.pdf?raw=1). The ABMS provides a publicly-accessible guide regarding certificates issued for all specialties and subspecialties including FPMRS.  They use information provided annually by ABOG.  Table 3B: New Subspecialty Certificates Issued by ABMS Member Boards 2009–2018.  Look for **both** OBGYN (top) and urology (bottom) numbers:
@@ -335,6 +337,74 @@ PCND2 <- PCND1 %>%
   tidyr::unite(full.name.5, Line.1.Street.Address, State, Last.Name, sep = " ", remove = FALSE, na.rm = FALSE) %>%
   readr::write_csv("Physician_Compare_National_Downloadable_File2.csv")  
 ```
+# AMA Physician Masterfile
+* [AMA Physician Masterfile](https://www.dropbox.com/s/0sbkw7i49rddwxc/2020%20FPMRS%20Redi-Data%20Quote%20state%20by%20state%20and%20total%20numbers.xls?raw=1) - Current count from AMA is 1,245 physicians.  
+
+STATE	
+  ### AK	ALASKA	 1 
+  ### AL	ALABAMA	 20 
+  ### AR	ARKANSAS	 5 
+	AZ	ARIZONA	 22 
+	CA	CALIFORNIA	 172 
+	CO	COLORADO	 25 
+	CT	CONNECTICUT	 19 
+	DC	DISTRICT OF COLUMBIA	 6 
+	FL	FLORIDA	 84 
+	GA	GEORGIA	 35 
+	HI	HAWAII	 6 
+	IA	IOWA	 10 
+	ID	IDAHO	 3 
+	IL	ILLINOIS	 44 
+	IN	INDIANA	 19 
+	KS	KANSAS	 7 
+	KY	KENTUCKY	 11 
+	LA	LOUISIANA	 15 
+	MA	MASSACHUSETTS	 36 
+	MD	MARYLAND	 33 
+	ME	MAINE	 6 
+	MI	MICHIGAN	 39 
+	MN	MINNESOTA	 20 
+	MO	MISSOURI	 26 
+	MS	MISSISSIPPI	 8 
+	MT	MONTANA	 1 
+	NC	NORTH CAROLINA	 39 
+	NE	NEBRASKA	 9 
+	NH	NEW HAMPSHIRE	 8 
+	NJ	NEW JERSEY	 43 
+	NM	NEW MEXICO	 8 
+	NV	NEVADA	 11 
+	NY	NEW YORK	 85 
+	OH	OHIO	 50 
+	OK	OKLAHOMA	 10 
+	OR	OREGON	 19 
+	PA	PENNSYLVANIA	 45 
+	RI	RHODE ISLAND	 9 
+	SC	SOUTH CAROLINA	 11 
+	SD	SOUTH DAKOTA	 3 
+	TN	TENNESSEE	 30 
+	TX	TEXAS	 85 
+	UT	UTAH	 4 
+	VA	VIRGINIA	 38 
+	VT	VERMONT	 4 
+	WA	WASHINGTON	 33 
+	WI	WISCONSIN	 22 
+	WV	WEST VIRGINIA	 6 
+	DE	DELAWARE	 -   
+	ND	NORTH DAKOTA	 -   
+	WY	WYOMING	 -   
+
+ABMSSUBCERTIFICATION1	5144	Female Pelvic Medicine and Reconstructive Surgery 	 956 
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 284 
+ABMSSUBCERTIFICATION2	5144	Female Pelvic Medicine and Reconstructive Surgery 	 5 
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+ABMSSUBCERTIFICATION3	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+ABMSSUBCERTIFICATION4	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
+
+
+### The final data set is available for the journal to review.  
+https://www.dropbox.com/s/ds4cogzjst9hhr9/all_a_dataframes_distinct_48.csv?raw=1
 
 
 # Accessory Code I used:
@@ -561,71 +631,3 @@ write.csv(input, output, row.names=FALSE)
 # optional. Show output in R window. Only works if run from R Studio
 View(input)
 ```
-# AMA Physician Masterfile
-* [AMA Physician Masterfile](https://www.dropbox.com/s/0sbkw7i49rddwxc/2020%20FPMRS%20Redi-Data%20Quote%20state%20by%20state%20and%20total%20numbers.xls?raw=1) - Current count from AMA is 1,245 physicians.  
-
-STATE	
-  ### AK	ALASKA	 1 
-  ### AL	ALABAMA	 20 
-  ### AR	ARKANSAS	 5 
-	AZ	ARIZONA	 22 
-	CA	CALIFORNIA	 172 
-	CO	COLORADO	 25 
-	CT	CONNECTICUT	 19 
-	DC	DISTRICT OF COLUMBIA	 6 
-	FL	FLORIDA	 84 
-	GA	GEORGIA	 35 
-	HI	HAWAII	 6 
-	IA	IOWA	 10 
-	ID	IDAHO	 3 
-	IL	ILLINOIS	 44 
-	IN	INDIANA	 19 
-	KS	KANSAS	 7 
-	KY	KENTUCKY	 11 
-	LA	LOUISIANA	 15 
-	MA	MASSACHUSETTS	 36 
-	MD	MARYLAND	 33 
-	ME	MAINE	 6 
-	MI	MICHIGAN	 39 
-	MN	MINNESOTA	 20 
-	MO	MISSOURI	 26 
-	MS	MISSISSIPPI	 8 
-	MT	MONTANA	 1 
-	NC	NORTH CAROLINA	 39 
-	NE	NEBRASKA	 9 
-	NH	NEW HAMPSHIRE	 8 
-	NJ	NEW JERSEY	 43 
-	NM	NEW MEXICO	 8 
-	NV	NEVADA	 11 
-	NY	NEW YORK	 85 
-	OH	OHIO	 50 
-	OK	OKLAHOMA	 10 
-	OR	OREGON	 19 
-	PA	PENNSYLVANIA	 45 
-	RI	RHODE ISLAND	 9 
-	SC	SOUTH CAROLINA	 11 
-	SD	SOUTH DAKOTA	 3 
-	TN	TENNESSEE	 30 
-	TX	TEXAS	 85 
-	UT	UTAH	 4 
-	VA	VIRGINIA	 38 
-	VT	VERMONT	 4 
-	WA	WASHINGTON	 33 
-	WI	WISCONSIN	 22 
-	WV	WEST VIRGINIA	 6 
-	DE	DELAWARE	 -   
-	ND	NORTH DAKOTA	 -   
-	WY	WYOMING	 -   
-
-ABMSSUBCERTIFICATION1	5144	Female Pelvic Medicine and Reconstructive Surgery 	 956 
-	5145	Female Pelvic Medicine and Reconstructive Surgery 	 284 
-ABMSSUBCERTIFICATION2	5144	Female Pelvic Medicine and Reconstructive Surgery 	 5 
-	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
-ABMSSUBCERTIFICATION3	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -   
-	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
-ABMSSUBCERTIFICATION4	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -   
-	5145	Female Pelvic Medicine and Reconstructive Surgery 	 -   
-
-
-### The final data set is available for the journal to review.  
-https://www.dropbox.com/s/ds4cogzjst9hhr9/all_a_dataframes_distinct_48.csv?raw=1
