@@ -408,7 +408,7 @@ ABMSSUBCERTIFICATION4	5144	Female Pelvic Medicine and Reconstructive Surgery 	 -
 https://www.dropbox.com/s/ds4cogzjst9hhr9/all_a_dataframes_distinct_48.csv?raw=1
 
 ## Comparison of ABMS and our data
-![Table comparing the two data sets](https://www.dropbox.com/s/2k6bsxlic0pwms9/ABMS%20CHART%20FOR%20FPMRS.pdf?raw=1)
+![Table comparing the two data sets](https://www.dropbox.com/s/2k6bsxlic0pwms9/ABMS%20CHART%20FOR%20FPMRS.pdf?dl=1)
 
 
 
