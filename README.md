@@ -280,7 +280,7 @@ library(exploratory)
   mutate(letter_last_name = str_sub(`Provider Last Name (Legal Name)`, "1","1"))
 ```
 # Publicly-Available AUGS List of FPMRS Physicians
-* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  
+* [AUGS List of Board-Certified with FPMRS](https://www.voicesforpfd.org/find-a-provider/) - This is a list of board-certified FPMRS from the patient facing site for AUGS and we were able to confirm the NPI data this way as well.  In addition, I added data from AUGS for the certification years for FPMRS.  
 ![Voices web site search](https://www.dropbox.com/s/37xjuzoafvuxomu/voices_for_pfd.png?raw=1)
 
 # Publicly-Available National Physician Compare List of FPMRS Physicians
