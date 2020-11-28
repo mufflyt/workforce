@@ -5,7 +5,7 @@
 ### -------- Physicians
 This is a list of physicians taken from Nomogram project using file 000_1a_this_one_works.R and compiled together by 000_1b_pulling_all_together.R.  The scrapes that we used were from 2020 and 2019 and exist in "~/Dropbox (Personal)/workforce/scraper/Scraper_results_2020".  The results are cleaned for deceased and retired docs.  Only includes people from the USA.  Does not include residents.  The final result is written to: write_rds(df, "~/Dropbox (Personal)/workforce/scraper/Scraper_results_2019_merged/2020_GOBA_all_a_dataframes.rds").  
 
-Then latitude and longitude were gathered from the city, state combination in 2020_GOBA_all_a_dataframes.rds.  I used 000_1_geocoding.R to get the data and don't forget about getting the API token.  The data is saved at "~/Dropbox (Personal)/workforce/Referenced_data/fellowship_programs_" and merged by the variable $complete_address back to the fellowship_programs_.csv.  
+Then latitude and longitude were gathered from the city, state combination in 2020_GOBA_all_a_dataframes.rds.  I used Indian Project >> geocoding.R to get the data and don't forget about getting the API token.  The data is saved at "~/Dropbox (Personal)/workforce/Referenced_data/fellowship_programs_" and merged by the variable $complete_address back to the fellowship_programs_.csv.  
 
 Because there are so many generalists it is unreasonable to geocode those with Google since it costs.  
 
