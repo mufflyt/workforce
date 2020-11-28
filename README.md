@@ -7,6 +7,8 @@ This is a list of physicians taken from Nomogram project using file 000_1a_this_
 
 Then latitude and longitude were gathered from the city, state combination in 2020_GOBA_all_a_dataframes.rds.  I used 000_1_geocoding.R to get the data and don't forget about getting the API token.  The data is saved at "~/Dropbox (Personal)/workforce/Referenced_data/fellowship_programs_" and merged by the variable $complete_address back to the fellowship_programs_.csv.  
 
+Because there are so many generalists it is unreasonable to geocode those with Google since it costs.  
+
 
 
 # Workforce information for Rui/Elena Project
